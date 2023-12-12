@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Update package information
+yes | sudo apt update
+
+# Install Apache2
+yes | sudo apt install apache2
+
+# Create the index.html file with server details
+echo "<h1>Application Load Balancer</h1><br><h1>Server Details</h1>
+<p><strong>Hostname: </strong>$(hostname)</p>
+<p><strong>IP Address: </strong>$(hostname -I | cut -d' ' -f1)</p>" > /var/www/html/index.html
+
+# Restart Apache2
+sudo systemctl restart apache2
